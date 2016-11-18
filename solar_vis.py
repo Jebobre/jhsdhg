@@ -48,13 +48,11 @@ def scale_y(y):
     В случае выхода **y** координаты за пределы экрана возвращает
     координату, лежащую за пределами холста.
     Направление оси развёрнуто, чтобы у модели ось **y** смотрела вверх.
-
     Параметры:
-
     **y** — y-координата модели.
     """
 
-    return y  # FIXME: not done yet
+    return int(y*scale_factor) + window_height//2 #FXME: not done yet
 
 
 def create_star_image(space, star):
@@ -74,13 +72,14 @@ def create_star_image(space, star):
 
 def create_planet_image(space, planet):
     """Создаёт отображаемый объект планеты.
-
     Параметры:
-
     **space** — холст для рисования.
     **planet** — объект планеты.
     """
-    pass  # FIXME: сделать как у звезды
+    x = scale_x(planet.x)
+    y = scale_y(planet.y)
+    r = planet.R
+    planet.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=planet.color) # FXME: сделать как у звезды
 
 
 def update_system_name(space, system_name):
